@@ -1,10 +1,9 @@
 <template>
-  <div></div>
+  <button>Показать меню</button>
 </template>
 
 <script>
 export default {
-
 }
 </script>
 

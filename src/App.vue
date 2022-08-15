@@ -1,8 +1,16 @@
 <template>
-  <menu-button></menu-button>
-  <task-button></task-button>
+  <main class="blocks">
+    <div class="blocks__container blocks-wrapper">
+      <div class="blocks__buttons">
+        <task-button @show-cards="showCards"></task-button>
+        <menu-button></menu-button>
+      </div>
 
-  <task-cards></task-cards>
+      <div class="blocks__cards">
+        <task-cards :cards="cards" v-if="show"></task-cards>
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -15,7 +23,8 @@ export default {
 
   data(){
     return {
-      cards: []
+      cards: [],
+      show: false
     }
   },
 
@@ -38,6 +47,10 @@ export default {
     setTasks(data){
       let { result: { offers } } = data
       this.cards = offers;
+    },
+
+    showCards(){
+      this.show = !this.show;
     }
   },
 
