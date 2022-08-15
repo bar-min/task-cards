@@ -4,8 +4,8 @@
       <add-menu v-if="menu" :categories="categories" @add-task="addTask"></add-menu>
 
       <div class="blocks__buttons">
-        <task-button @show-cards="showCards"></task-button>
-        <menu-button @show-menu="showMenu"></menu-button>
+        <task-button @show-cards="showCards">Показать задачи</task-button>
+        <task-button @show-menu="showMenu">Показать меню</task-button>
       </div>
 
       <div class="blocks__cards">
@@ -18,7 +18,6 @@
 <script>
 import TaskCards from './components/TaskCards.vue';
 import TaskButton from './components/TaskButton.vue';
-import MenuButton from './components/MenuButton.vue';
 import AddMenu from './components/AddMenu.vue'
 
 export default {
@@ -68,7 +67,7 @@ export default {
     this.getTasksData()
   },
 
-  components: { TaskCards, TaskButton, MenuButton, AddMenu }
+  components: { TaskCards, TaskButton, AddMenu }
 }
 </script>
 

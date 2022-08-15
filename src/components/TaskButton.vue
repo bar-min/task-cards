@@ -1,10 +1,10 @@
 <template>
-  <button @click="$emit('show-cards')">Показать задачи</button>
+  <button @click="$emit('show-cards'), $emit('show-menu')"><slot></slot></button>
 </template>
 
 <script>
 export default {
-  emits: ['show-cards']
+  emits: ['show-cards', 'show-menu']
 }
 </script>
 
