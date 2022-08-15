@@ -6,17 +6,16 @@
     margin: 0 auto;
     padding: 50px 15px;
   }
-
   &__container{
+    position: relative;
     display: flex;
     flex-direction: row;
-    gap: 40px;
   }
-
   &__buttons{
-    width: 200px;
+    flex: 0 0 300px;
     display: flex;
     flex-direction: column;
+    transform: translateX(10%);
     gap: 25px;
     & > button {
       width: 200px;
@@ -33,7 +32,6 @@
       }
     }
   }
-  
   &__cards{
   flex: 1 1 auto;
   }
