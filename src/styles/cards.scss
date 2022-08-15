@@ -1,0 +1,33 @@
+.cards {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+.card{
+  flex-basis: 315px;
+  background-color: #FFFEFB;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06), 0px 6px 10px rgba(0, 0, 0, 0.04);
+  padding: 10px 15px; 
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  &__title{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 125%;
+    letter-spacing: 0;
+  }
+  &__category{
+    padding-bottom: 10px;
+  }
+  &__price{
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 125%;
+  }
+}
