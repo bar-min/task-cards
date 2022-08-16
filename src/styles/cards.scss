@@ -2,6 +2,10 @@
   display: flex;
   flex-flow: row wrap;
   gap: 20px;
+
+  @media (max-width: 1200px){
+    justify-content: space-evenly;
+  }
 }
 
 .card{
@@ -15,11 +19,15 @@
   gap: 10px;
   font-size: 16.5px;
   position: relative;
+  @include adaptiveValue('flex-basis', 335, 270, 1440, 1200, 1);
+  @include adaptiveValue('font-size', 16.5, 14.5, 1440, 1200, 1);
+
   &__title{
     font-size: 20px;
     font-weight: 600;
     line-height: 125%;
     letter-spacing: 0;
+    @include adaptiveValue('font-size', 20, 18, 1440, 1200, 1);
   }
   &__category{
     padding-bottom: 5px;
