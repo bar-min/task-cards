@@ -1,14 +1,25 @@
 <template>
-  <div class="cards">
-    <card-item v-for="card in cards" :key="card.id" :task="card"></card-item>
-  </div>
+  <transition>
+    <div class="cards" v-if="show">
+      <transition-group name="list">
+        <card-item v-for="card in cards" :key="card.id" :task="card" @del-task="removeTask"></card-item>
+      </transition-group>
+    </div>
+  </transition>
 </template>
 
 <script>
 import CardItem from './CardItem.vue';
 
 export default {
-  props: ['cards'],
+  props: ['cards', 'show'],
+  emits: ['remove-task'],
+
+  methods: {
+    removeTask(id){
+      this.$emit('remove-task', id)
+    }
+  },
 
   components: { CardItem }
 }

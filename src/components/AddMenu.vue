@@ -1,57 +1,59 @@
 <template>
-  <div class="menu">
-    <div class="menu__wrapper">
-      <h2 class="menu__heading">Добавление задачи</h2>
-      
-      <div class="menu__title" :class="{'menu-required': !isValidTitle}">
-        <label for="title" class="label-menu">Наименование задачи</label>
-        <input v-model='title' @blur="checkInput" class='input-menu' id="title" maxlength="35" placeholder="Введите наименование">
-      </div>
+  <transition>
+    <div class="menu" v-if="menu">
+      <div class="menu__wrapper">
+        <h2 class="menu__heading">Добавление задачи</h2>
+        
+        <div class="menu__title" :class="{'menu-required': !isValidTitle}">
+          <label for="title" class="label-menu">Наименование задачи</label>
+          <input v-model='title' @blur="checkInput" class='input-menu' id="title" maxlength="35" placeholder="Введите наименование">
+        </div>
 
-      <div class="menu__category">
-        <label for="category" class="label-menu">Категория задачи</label>
-        <select class="input-menu select" ref="select">
-          <option v-for="(item, index) in categories" :key="index" :value='item' :selected="!index">
-          {{ item }}
-          </option>
-        </select>
-      </div>
+        <div class="menu__category">
+          <label for="category" class="label-menu">Категория задачи</label>
+          <select class="input-menu select" ref="select">
+            <option v-for="(item, index) in categories" :key="index" :value='item' :selected="!index">
+            {{ item }}
+            </option>
+          </select>
+        </div>
 
-      <div class="date">
-        <div class="date__wrapper" :class="{'menu-required': !validDate}">
-          <label for="start">Дата начала</label>
-          <div class="date__start" id="start">
-            <input type="date" v-model="start.date">
-            <input type="time" v-model="start.time">
+        <div class="date">
+          <div class="date__wrapper" :class="{'menu-required': !validDate}">
+            <label for="start">Дата начала</label>
+            <div class="date__start" id="start">
+              <input type="date" v-model="start.date">
+              <input type="time" v-model="start.time">
+            </div>
+          </div>
+
+          <div class="date__wrapper" :class="{'menu-required': !validDate}">
+            <label for="end">Дата окончания</label>
+            <div class="date__end" id="end">
+              <input type="date" v-model="end.date">
+              <input type="time" v-model="end.time">
+            </div>
           </div>
         </div>
 
-        <div class="date__wrapper" :class="{'menu-required': !validDate}">
-          <label for="end">Дата окончания</label>
-          <div class="date__end" id="end">
-            <input type="date" v-model="end.date">
-            <input type="time" v-model="end.time">
-          </div>
+        <div class="menu__price" :class="{'menu-required': !isValidPrice}">
+          <label for="price" class="label-menu">Цена задачи</label>
+          <input :value="price" @input="checkPrice" @blur="checkInput" class='input-menu' id="price" maxlength="8" placeholder="Введите цену">
         </div>
+
+        <button @click="setTask" 
+        class="menu__btn" 
+        :class="{'menu__btn_active': isValid}"  
+        :disabled="!isValid">Добавить</button>
+
       </div>
-
-      <div class="menu__price" :class="{'menu-required': !isValidPrice}">
-        <label for="price" class="label-menu">Цена задачи</label>
-        <input :value="price" @input="checkPrice" @blur="checkInput" class='input-menu' id="price" maxlength="8" placeholder="Введите цену">
-      </div>
-
-      <button @click="setTask" 
-      class="menu__btn" 
-      :class="{'menu__btn_active': isValid}"  
-      :disabled="!isValid">Добавить</button>
-
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
 export default {
-  props: ['categories'],
+  props: ['categories', 'menu'],
   emits: ['add-task'],
 
   data(){
@@ -97,6 +99,7 @@ export default {
         price: this.validPrice, 
         dateBegin: this.dateStart,
         dateEnd: this.dateEnd,
+        id: Date.now()
       }
       this.$emit('add-task', newTask)
 

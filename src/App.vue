@@ -1,7 +1,7 @@
 <template>
   <main class="blocks">
     <div class="blocks__container blocks-wrapper">
-      <add-menu v-if="menu" :categories="categories" @add-task="addTask"></add-menu>
+      <add-menu :menu="menu" :categories="categories" @add-task="addTask"></add-menu>
 
       <div class="blocks__buttons">
         <task-button @show-cards="showCards">Показать задачи</task-button>
@@ -9,7 +9,7 @@
       </div>
 
       <div class="blocks__cards">
-        <task-cards :cards="cards" v-if="show"></task-cards>
+        <task-cards :show="show" :cards="cards" @remove-task="deleteTask"></task-cards>
       </div>
     </div>
   </main>
@@ -54,6 +54,10 @@ export default {
     },
     addTask(task){
       this.cards.push(task)
+    },
+    deleteTask(id){
+      let idx = this.cards.findIndex(item => item.id === id);
+      this.cards.splice(idx, 1);
     },
     showCards(){
       this.show = !this.show;

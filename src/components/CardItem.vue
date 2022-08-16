@@ -5,12 +5,14 @@
     <div class="card__date">Дата окончания: {{ setValidUnits(task.dateEnd, 'date') }}</div>
     <p class="card__category">Категория: {{ setValidUnits(task.category) }}</p>
     <div class="card__price">{{ setValidUnits(task.price, 'price') }}</div>
+    <div class="card__remove" @click="$emit('del-task', task.id)"></div>
   </div>
 </template>
 
 <script>
 export default {
   props: ['task'],
+  emits: ['del-task'],
 
   methods: {
     setValidUnits(value, type = 'default', unit = 'руб.'){
