@@ -19,8 +19,10 @@
   gap: 10px;
   font-size: 16.5px;
   position: relative;
+  word-break: break-word;
   @include adaptiveValue('flex-basis', 335, 270, 1440, 1200, 1);
   @include adaptiveValue('font-size', 16.5, 14.5, 1440, 1200, 1);
+  @include adaptiveValue('font-size', 16.5, 14.5, 680, 320, 1);
 
   &__title{
     font-size: 20px;
@@ -28,6 +30,7 @@
     line-height: 125%;
     letter-spacing: 0;
     @include adaptiveValue('font-size', 20, 18, 1440, 1200, 1);
+    @include adaptiveValue('font-size', 20, 18, 680, 320, 1);
   }
   &__category{
     padding-bottom: 5px;
