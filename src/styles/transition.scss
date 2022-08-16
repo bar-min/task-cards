@@ -13,12 +13,12 @@
   transition: all 0.75s ease;
 }
 
-.v-enter-active,
-.v-leave-active {
+.menu-enter-active,
+.menu-leave-active {
   transition: opacity 0.5s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.menu-enter-from,
+.menu-leave-to {
   opacity: 0;
 }

@@ -1,5 +1,5 @@
 <template>
-  <transition>
+  <transition name="menu">
     <div class="menu" v-if="menu">
       <div class="close" @click="$emit('close-menu')"></div>
 

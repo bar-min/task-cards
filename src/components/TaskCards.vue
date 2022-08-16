@@ -1,11 +1,7 @@
 <template>
-  <transition>
-    <div class="cards" v-if="show">
-      <transition-group name="list">
-        <card-item v-for="card in cards" :key="card.id" :task="card" @del-task="removeTask"></card-item>
-      </transition-group>
-    </div>
-  </transition>
+  <transition-group class="cards" name="list" tag="div" v-if="show" appear>
+    <card-item v-for="card in cards" :key="card.id" :task="card" @del-task="removeTask"></card-item>
+  </transition-group>
 </template>
 
 <script>
