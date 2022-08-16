@@ -24,7 +24,7 @@
           <div class="date__wrapper" :class="{'menu-required': !validDate}">
             <label for="start">Дата начала</label>
             <div class="date__start" id="start">
-              <input type="date" v-model="start.date">
+              <input type="date" :value="start.date" @input="checkDate($event, 'start')">
               <input type="time" v-model="start.time">
             </div>
           </div>
@@ -32,7 +32,7 @@
           <div class="date__wrapper" :class="{'menu-required': !validDate}">
             <label for="end">Дата окончания</label>
             <div class="date__end" id="end">
-              <input type="date" v-model="end.date">
+              <input type="date" :value="end.date" @input="checkDate($event, 'end')">
               <input type="time" v-model="end.time">
             </div>
           </div>
@@ -83,13 +83,13 @@ export default {
       return +this.price.replace(/\s/g, "")
     },
     validDate(){
-      return Date.parse(this.dateStart) < Date.parse(this.dateEnd) ? true : false
+      return this.modifyDate(this.dateStart) < this.modifyDate(this.dateEnd) ? true : false
     },
     dateStart(){
-      return new Date(this.start.date + '\n' + this.start.time)
+      return this.start.date + '\n' + this.start.time
     },
     dateEnd(){
-      return new Date(this.end.date + '\n' + this.end.time)
+      return this.end.date + '\n' + this.end.time
     }
   },
 
@@ -111,6 +111,23 @@ export default {
     checkInput(){
       this.isValidTitle = (!this.title) ? false : true; 
       this.isValidPrice = (!this.price) ? false : true; 
+    },
+
+    checkDate(event, type = 'start'){
+      const inputDate = event.target.value;
+      const max = this.modifyDate('2024-01-01');  
+      const min = this.modifyDate('2022-01-01');
+      let current = this.modifyDate(inputDate);
+
+      if(max >= current && current >= min){
+        this[type].date = inputDate;
+      } else {
+        event.target.value = this[type].date;
+      }
+    },
+
+    modifyDate(date){
+      return Date.parse(new Date(date));
     },
 
     checkPrice(event){
