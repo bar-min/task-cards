@@ -8,6 +8,18 @@
   border-radius: 4px;
   z-index: 10;
   
+  .close{
+    cursor: pointer;
+    background: url('@/assets/icons/close.svg') center/cover no-repeat;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 5;
+    transition: all 0.3s ease;
+  }
+
   .menu-required{
     position: relative;
     & > input, #start, #end {

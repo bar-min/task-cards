@@ -1,7 +1,7 @@
 <template>
   <main class="blocks">
     <div class="blocks__container blocks-wrapper">
-      <add-menu :menu="menu" :categories="categories" @add-task="addCard"></add-menu>
+      <add-menu :menu="menu" :categories="categories" @add-task="addCard" @close-menu="showMenu"></add-menu>
 
       <div class="blocks__buttons">
         <show-button @show-cards="showCards">Показать задачи</show-button>

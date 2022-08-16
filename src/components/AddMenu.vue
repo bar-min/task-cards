@@ -1,6 +1,8 @@
 <template>
   <transition>
     <div class="menu" v-if="menu">
+      <div class="close" @click="$emit('close-menu')"></div>
+
       <div class="menu__wrapper">
         <h2 class="menu__heading">Добавление задачи</h2>
         
@@ -54,7 +56,7 @@
 <script>
 export default {
   props: ['categories', 'menu'],
-  emits: ['add-task'],
+  emits: ['add-task', 'close-menu'],
 
   data(){
     return {
